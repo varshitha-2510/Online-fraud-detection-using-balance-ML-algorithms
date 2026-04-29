@@ -1,0 +1,128 @@
+{% load static %}
+<html>
+<head>
+<title>Real-Time Fraud Detection</title>
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+
+<script>
+function validate(){
+    if(document.f1.amount.value==""){
+        alert("Enter Amount");
+        return false;
+    }
+    return true;
+}
+
+function clearForm(){
+    document.f1.reset();
+}
+</script>
+</head>
+
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+</style>
+
+<body>
+<div class="main">
+  <div class="main_resize">
+
+    <div class="header">
+      <div class="logo">
+        <h1><span>Online Fraud Payment Detection</span></h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content_bg">
+
+        <div class="menu_nav">
+          <ul>
+            <li><a href="{% url 'LoadDataset' %}"><font size="3" color="black">Load & Processed Dataset</font></a></li>
+            <li><a href="{% url 'BalancedData' %}"><font size="3" color="black">Balanced Data </font></a></li>
+            <li><a href="{% url 'TrainML' %}"><font size="3" color="black">Train ML Models</font></a></li>
+            <li><a href="{% url 'Predict' %}"><font size="3" color="black">Detect Fraud</font></a></li>
+            <li><a href="{% url 'RealtimePredict' %}"><font size="3" color="black">Real-Time Detection</font></a></li>
+            <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</font></a></li>
+          </ul>
+        </div>
+
+        <center>
+        <form name="f1" method="post" action="{% url 'RealtimePredictAction' %}" onsubmit="return validate()">
+        {% csrf_token %}
+
+        <h2>Real-Time Transaction Fraud Detection</h2>
+
+        <!-- Prediction Result -->
+        <font color="red" size="4"><b>{{ data }}</b></font>
+
+        <!-- Explainable AI Output -->
+        {% if explain %}
+        <br><br>
+        <h3>Why this decision?</h3>
+        <div style="width:50%; margin:auto; text-align:left; color:black;">
+            {{ explain|safe }}
+        </div>
+        {% endif %}
+
+        <br><br>
+
+        <table width="40%">
+          <tr>
+            <td>Transaction Amount</td>
+            <td>
+              <input type="text" name="amount" value="{{ amount|default:'' }}">
+            </td>
+          </tr>
+
+          <tr>
+            <td>Sender Old Balance</td>
+            <td>
+              <input type="text" name="oldbalanceOrg" value="{{ oldbalanceOrg|default:'' }}">
+            </td>
+          </tr>
+
+          <tr>
+            <td>Sender New Balance</td>
+            <td>
+              <input type="text" name="newbalanceOrig" value="{{ newbalanceOrig|default:'' }}">
+            </td>
+          </tr>
+
+          <tr>
+            <td>Receiver Old Balance</td>
+            <td>
+              <input type="text" name="oldbalanceDest" value="{{ oldbalanceDest|default:'' }}">
+            </td>
+          </tr>
+
+          <tr>
+            <td>Receiver New Balance</td>
+            <td>
+              <input type="text" name="newbalanceDest" value="{{ newbalanceDest|default:'' }}">
+            </td>
+          </tr>
+
+          <tr>
+  <td></td>
+  <td>
+    <input type="submit" value="Predict Fraud">
+    &nbsp;&nbsp;
+    <input type="button" value="Cancel"
+           onclick="window.location.href='{% url 'RealtimePredict' %}'">
+  </td>
+</tr>
+        </table>
+
+        </form>
+        </center>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

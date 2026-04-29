@@ -1,0 +1,79 @@
+{% load static %}
+<html>
+<head>
+<title>Rule-Based vs Hybrid Fraud Detection</title>
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+.explain-box{
+    width:85%;
+    margin:auto;
+    text-align:justify;
+    font-size:15px;
+    color:black;
+}
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:20px;
+}
+</style>
+
+<body>
+<div class="main">
+  <div class="main_resize">
+
+    <div class="header">
+      <div class="logo">
+        <h1><span>Rule-Based vs Hybrid Fraud Detection Engine</span></h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content_bg">
+
+        <div class="menu_nav">
+         <ul>      
+		  <li><a href="{% url 'DetectionComparison' %}"><font size="3" color="black">Detection Comparison</font></a></li>
+		  <li><a href="{% url 'ModelComparison' %}"><font size="3" color="black">Rule vs Hybrid</font></a></li>
+		  <li><a href="{% url 'AccuracyComparison' %}"><font size="3" color="black">Accuracy Improvement</font></a></li>
+		  <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</font></a></li>
+         </ul>          
+        </div>
+
+        <center>
+          <h2>Rule-Based vs Hybrid Rule + ML Engine</h2>
+          <img src="data:image/png;base64, {{ img }}" alt="Rule vs Hybrid Graph"/>
+        </center>
+
+        <div class="explain-box">
+          <div class="section-title">📌 Explanation</div>
+          Rule-based systems use fixed thresholds such as transaction limits and balance checks.
+          These systems fail when fraud patterns change.
+
+          <br><br>
+          The Hybrid Engine integrates:
+          <ul>
+            <li>Rule-based fraud indicators</li>
+            <li>Machine Learning probability scores</li>
+          </ul>
+
+          This improves adaptability, reduces false positives, and enhances fraud detection accuracy.
+
+          <div class="section-title">⚙️ Hybrid Risk Score Formula</div>
+          Final Risk Score = Rule Risk Score + (ML Probability × Weight)
+        </div>
+
+        <br><br>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

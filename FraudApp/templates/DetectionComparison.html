@@ -1,0 +1,95 @@
+{% load static %}
+<html>
+<head>
+<title>Fraud Detection Comparison Dashboard</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+.explain-box{
+    width:85%;
+    margin:auto;
+    text-align:justify;
+    font-size:15px;
+    color:black;
+    line-height:1.6;
+}
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:20px;
+}
+</style>
+
+<body>
+<div class="main">
+  <div class="main_resize">
+
+    <div class="header">
+      <div class="logo">
+        <h1><span>Online Fraud Payment Detection using Balanced ML Algorithms</span></h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content_bg">
+
+        <!-- MENU -->
+        <div class="menu_nav">
+         <ul>      
+		  <li><a href="{% url 'DetectionComparison' %}"><font size="3" color="black">Detection Comparison</font></a></li>
+		  <li><a href="{% url 'ModelComparison' %}"><font size="3" color="black">Rule vs Hybrid</font></a></li>
+		  <li><a href="{% url 'AccuracyComparison' %}"><font size="3" color="black">Accuracy Improvement</font></a></li>
+		  <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</font></a></li>
+         </ul>          
+        </div>
+
+        <!-- HEADER IMAGE -->
+        <div class="hbg">
+          <img src="{% static 'images/header_images.jpg' %}" width="1010" height="200" alt="" />
+        </div>
+
+        <!-- GRAPH -->
+        <center>
+          <h2>CSV-Based Detection vs Real-Time Fraud Detection</h2>
+          <img src="data:image/png;base64, {{ img }}" alt="Detection Comparison Graph"/>
+        </center>
+
+        <!-- EXPLANATION -->
+        <div class="explain-box">
+          <div class="section-title">📌 Explanation</div>
+          CSV-based fraud detection analyzes transactions **after completion** using historical data files.
+          This method helps in reporting fraud but cannot prevent losses in real time.
+
+          <br><br>
+          Real-Time Fraud Detection evaluates each transaction **before execution** using:
+          <ul>
+            <li>Transaction amount behavior</li>
+            <li>Sender balance drain analysis</li>
+            <li>Receiver account behavior</li>
+            <li>Machine Learning fraud probability</li>
+          </ul>
+
+          This allows instant risk assessment and proactive fraud prevention.
+
+          <div class="section-title">📊 Detection Rate Calculation</div>
+          Detection Rate = (Correctly Detected Fraud Transactions / Total Fraud Transactions) × 100
+
+          <br><br>
+          Real-Time Detection achieves higher detection accuracy because decisions are made dynamically
+          using both rule-based logic and ML confidence.
+        </div>
+
+        <br><br>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

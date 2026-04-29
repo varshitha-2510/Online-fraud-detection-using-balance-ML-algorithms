@@ -1,0 +1,130 @@
+{% load static %}
+<html>
+<head>
+<title>Fraud Detection Dashboard</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+
+/* dashboard boxes */
+.dashboard-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.dashboard-box {
+  width: 28%;
+  background: #e8f6ff;
+  border: 2px solid #2b78c6;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-box h3 {
+  color: #003366;
+}
+
+.dashboard-box p {
+  color: black;
+  font-size: 14px;
+}
+
+.dashboard-box a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: #2b78c6;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.dashboard-box a:hover {
+  background: #1d5a96;
+}
+</style>
+
+<body>
+<div class="main">
+  <div class="main_resize">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo">
+        <h1>
+          <span>Online Fraud Payment Detection using Balanced ML Algorithms</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="content_bg">
+
+        <!-- MENU -->
+        <div class="menu_nav">
+          <ul>
+<li><a href="{% url 'index' %}"><font size="3" color="black">Home</a></li>
+       <li><a href="{% url 'UserLogin' %}"><font size="3" color="black">User Login</a></li>
+      <li><a href="{% url 'Register' %}"><font size="3" color="black">New User Register</a></li>
+      <li><a href="{% url 'DashboardHome' %}">
+      <font size="3" color="black">Dashboard</font></a></li>
+          </ul>
+        </div>
+
+        <!-- BANNER IMAGE -->
+        <div class="hbg">
+          <img src="{% static 'images/header_images.jpg' %}" width="1010" height="200" alt="" />
+        </div>
+
+        <!-- DASHBOARD CONTENT -->
+        <h2 align="center">System Comparison Dashboards</h2>
+
+        <div class="dashboard-container">
+
+          <!-- Dashboard 1 -->
+          <div class="dashboard-box">
+            <h3>CSV vs Real-Time Detection</h3>
+            <p>
+              Compares offline CSV-based fraud detection with real-time
+              transaction monitoring.
+            </p>
+            <a href="{% url 'DetectionComparison' %}">View Dashboard</a>
+          </div>
+
+          <!-- Dashboard 2 -->
+          <div class="dashboard-box">
+            <h3>Rule-Based vs Hybrid ML</h3>
+            <p>
+              Shows improvement from traditional rule-based detection
+              to Hybrid Rule + ML engine.
+            </p>
+            <a href="{% url 'ModelComparison' %}">View Dashboard</a>
+          </div>
+
+          <!-- Dashboard 3 -->
+          <div class="dashboard-box">
+            <h3>Accuracy Improvement</h3>
+            <p>
+              Visualizes accuracy enhancement from old system to the
+              newly updated ML-powered system.
+            </p>
+            <a href="{% url 'AccuracyComparison' %}">View Dashboard</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+{% load static %}
+<html>
+<head>
+<title>Accuracy Improvement Dashboard</title>
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<style>
+body {
+  background-image: url("{% static 'images/back.jpg' %}");
+}
+.explain-box{
+    width:85%;
+    margin:auto;
+    text-align:justify;
+    font-size:15px;
+    color:black;
+}
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:20px;
+}
+.highlight{
+    background:#f0f8ff;
+    padding:10px;
+    border-left:4px solid #007acc;
+    margin-top:10px;
+}
+</style>
+
+<body>
+<div class="main">
+  <div class="main_resize">
+
+    <div class="header">
+      <div class="logo">
+        <h1><span>Accuracy Improvement Analysis</span></h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content_bg">
+
+        <div class="menu_nav">
+         <ul>      
+		  <li><a href="{% url 'DetectionComparison' %}"><font size="3" color="black">Detection Comparison</font></a></li>
+		  <li><a href="{% url 'ModelComparison' %}"><font size="3" color="black">Rule vs Hybrid</font></a></li>
+		  <li><a href="{% url 'AccuracyComparison' %}"><font size="3" color="black">Accuracy Improvement</font></a></li>
+		  <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</font></a></li>
+         </ul>          
+        </div>
+
+        <center>
+          <h2>Accuracy Improvement Across Fraud Detection Stages</h2>
+          <img src="data:image/png;base64,{{ img }}" width="650" alt="Accuracy Graph"/>
+        </center>
+
+        <div class="explain-box">
+
+          <div class="section-title">📌 System Accuracy Stages</div>
+
+          <div class="highlight">
+            <b>1️⃣ Before SMOTE – Traditional ML</b><br>
+            The dataset is highly imbalanced. The model mainly learns non-fraud patterns,
+            resulting in lower fraud detection accuracy.
+          </div>
+
+          <div class="highlight">
+            <b>2️⃣ After SMOTE – Balanced ML Model</b><br>
+            SMOTE generates synthetic fraud samples and balances the dataset.
+            This improves learning of minority fraud class.
+          </div>
+
+          <div class="highlight">
+            <b>3️⃣ Hybrid Rule + ML – Real-Time Detection</b><br>
+            Combines domain rules (amount drain, receiver risk, velocity rules)
+            with ML probability output, giving maximum accuracy.
+          </div>
+
+          <div class="section-title">📈 Accuracy Formula</div>
+          Accuracy = (TP + TN) / (TP + TN + FP + FN) × 100
+
+          <br><br>
+          <b>Where:</b><br>
+          TP – Fraud correctly detected<br>
+          TN – Normal transaction correctly classified<br>
+          FP – Normal transaction wrongly flagged as fraud<br>
+          FN – Fraud transaction missed by system
+
+          <div class="section-title">🏁 Conclusion</div>
+          The graph clearly proves that applying SMOTE and then integrating
+          a Hybrid Rule + Machine Learning real-time engine significantly
+          improves fraud detection accuracy.
+
+        </div>
+
+        <br><br>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
